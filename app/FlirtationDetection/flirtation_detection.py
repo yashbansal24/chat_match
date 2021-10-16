@@ -5,7 +5,7 @@ pd.set_option("display.max_columns", 200)
 # from google import files
 # uploaded = files.upload()
 
-df = pd.read_csv("./FlirtationDetection/flirting_rated.csv")
+df = pd.read_csv("./app/FlirtationDetection/flirting_rated.csv")
 
 # Extra cleaning
 df = df.dropna()

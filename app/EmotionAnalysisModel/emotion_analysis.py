@@ -13,7 +13,7 @@ def padd(arr):
     return arr[:100]
   
 
-vocab_f ='./EmotionAnalysisModel/glove.6B.50d.txt'
+vocab_f ='./app/EmotionAnalysisModel/glove.6B.50d.txt'
 embeddings_index = {}
 with open(vocab_f,encoding='utf8') as f:
     for line in f:
@@ -31,7 +31,7 @@ def prepare_chat(feel_arr):
     return feel_arr
 
 
-reconstructed_model = keras.models.load_model("EmotionAnalysisModel")
+reconstructed_model = keras.models.load_model("./app/EmotionAnalysisModel")
 
 
 def find_emotion(chats):
