@@ -1,0 +1,44 @@
+.row {
+    margin-bottom: 20px;
+}
+.container {
+    margin-top: 50px;
+}
+
+.chat-area {
+    width: 50%;
+}
+
+@media only screen and (max-width: 575px) {  
+    .chat-area {
+        width: 100%;
+    }
+}  
+
+@media only screen and (max-width: 992px) {  
+    .col-sm-3 {
+        width: 100%;
+    }
+
+}  
+
+
+.input-rows {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+body {
+    background: #f7f9fa;
+}
+
+.percentage-col {
+    text-align: center;
+}
+
+.heart-img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    margin-top:10px;
+}
