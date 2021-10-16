@@ -13,7 +13,7 @@ def padd(arr):
     return arr[:100]
   
 
-vocab_f ='./glove.6B.50d.txt'
+vocab_f ='./EmotionAnalysisModel/glove.6B.50d.txt'
 embeddings_index = {}
 with open(vocab_f,encoding='utf8') as f:
     for line in f:

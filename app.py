@@ -1,7 +1,8 @@
 from flask import Flask
 from datetime import datetime
 from flask import render_template
-from emotion_analysis import find_emotion
+from EmotionAnalysisModel.emotion_analysis import find_emotion
+from FlirtationDetection.flirtation_detection import predictFlirtationBonus
 
 app = Flask(__name__)
 
@@ -23,7 +24,11 @@ def hello_there(name = None):
     for _,p in positives:
         percentage+=p
     percentage/=len(positives)
+    flirtBonus = predictFlirtationBonus(chats)
+
+    percentage = min( percentage + flirtBonus , 1)
     percentage*=100.0
+    print(percentage)
     return render_template(
         "home.html",
         percentage=percentage,
