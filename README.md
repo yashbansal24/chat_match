@@ -1,10 +1,10 @@
 # Chat Match
 
 Setup Instructions:
-1. Install Python
+1. Install Python3.8 or above
 2. Do pip install virtualenv
 3. run /Scripts/activate
-4. run src/script.py
+4. run flask run --host=0.0.0.0
 
 
 Key Items:
