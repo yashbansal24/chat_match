@@ -71,7 +71,7 @@
                     <div class=" percentage-col small-screen-percentage">
                         <h3> Calculate your compatibility </h3>
                         <img class="heart-img" src="{{ url_for('static', filename='heart.png')}}"/>
-                        <h1 id="percentage-value"></h1>
+                        <h1 id="percentage-value-mobile"></h1>
                     </div>
                     <div class="row" style="width: 300px; margin: 0 auto;margin-bottom: 30px;">
                         <img id="meme-img" src=""/>
@@ -150,7 +150,11 @@
                                         document.getElementById('meme-img').src = imgUrl;
                                     });
                                     }
+<<<<<<< HEAD
                                     var percentage = document.getElementById('percentage-value').innerHTML;
+=======
+                                    var percentage = document.getElementById('percentage-value').innerHTML || document.getElementById('percentage-value-mobile').innerHTML;;
+>>>>>>> 04fab1722e2b96e0505b78cfd06fc669ac728e2e
                                     percentage = parseInt(percentage.substring(0, percentage.length - 1));
                                     if (percentage <= 20) {
                                         searchGiphy(`better+luck+next+time`);
@@ -173,6 +177,10 @@
                                         setTimeout(function() {$('#spinner').hide()} , 500);
                                         var percentage =data.percentage || 0;
                                         document.getElementById('percentage-value').innerHTML = `${percentage}%`;
+<<<<<<< HEAD
+=======
+                                        document.getElementById('percentage-value-mobile').innerHTML = `${percentage}%`;
+>>>>>>> 04fab1722e2b96e0505b78cfd06fc669ac728e2e
                                         generateGif();
                                 }).fail(function(){
                                     console.log("error");

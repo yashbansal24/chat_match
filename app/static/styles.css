@@ -7,6 +7,7 @@
 
 .chat-area {
     width: 50%;
+    margin: 5px 0;
 }
 
 @media only screen and (max-width: 575px) {  
