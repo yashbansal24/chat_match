@@ -137,7 +137,7 @@
                                 ];
                                 console.log(chats);
                                 $.post(
-                                    "http://localhost:5000/hello", { 'data': JSON.stringify(chats) }, 
+                                    "/hello", { 'data': JSON.stringify(chats) }, 
                                     function(data = {}){
                                         $('#loading-bar').hide();
                                         $('#loaded-bar').show();
