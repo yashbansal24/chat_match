@@ -7,6 +7,7 @@
 
 .chat-area {
     width: 50%;
+    margin: 5px 0;
 }
 
 @media only screen and (max-width: 575px) {  
@@ -26,6 +27,7 @@
 .input-rows {
     padding-left: 20px;
     padding-right: 20px;
+    margin-bottom: 0;
 }
 
 body {
@@ -42,3 +44,29 @@ body {
     margin-bottom: 10px;
     margin-top:10px;
 }
+
+.add-chat-btn {
+    width: 100%;
+}
+
+#submit-btn {
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+
+.submit-div {
+    width: 200px;
+}
+
+@media only screen and (min-width: 992px) {  
+    .small-screen-percentage {
+        display: none;
+    }
+}  
+
+@media only screen and (max-width: 992px) {  
+    .large-screen-percentage {
+        display: none;
+    }
+
+}  

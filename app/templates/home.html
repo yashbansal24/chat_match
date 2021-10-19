@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
-
+    
     <div class="container page-container">
         <h2 style="margin-bottom: 20px;"> Texting Match </h2>
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 percentage-col">
+                        <div class="col-sm-6 percentage-col large-screen-percentage">
                             <h3> Calculate your compatibility </h3>
                             <img class="heart-img" src="{{ url_for('static', filename='heart.png')}}"/>
                             <h1 id="percentage-value"></h1>
@@ -68,83 +68,113 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div id="loaded-bar" class="progress" style="height: 30px;display: none;width: 50%;margin: 0 auto;">
-                            </div>
-                            <div id="loading-bar" class="progress" style="height: 30px;display: none; width: 50%; margin: 0 auto;">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
-                            </div>
-                        </div>
+                    <div class=" percentage-col small-screen-percentage">
+                        <h3> Calculate your compatibility </h3>
+                        <img class="heart-img" src="{{ url_for('static', filename='heart.png')}}"/>
+                        <h1 id="percentage-value-mobile"></h1>
                     </div>
-                        <div class="row input-rows">
-                            <div class="col-sm-6 input-group chat-area">
-                                <span class="input-group-text" id="them-1">Them</span>
-                                <input id="them-reply-1" type="text" class="form-control" placeholder="They replied" aria-label="Reply" aria-describedby="them-1">
-                            </div>
-                            <div class="col-sm-6">
-                            </div>
-                            <div class="col-sm-6">
-                            </div>
-                            <div class="col-sm-6 input-group chat-area">
-                                <input id="you-reply-1" type="text" class="form-control" placeholder="You replied" aria-label="Your Reply" aria-describedby="you-1">
-                                <span class="input-group-text" id="you-1">You</span>
-                            </div>
+                    <div class="row" style="width: 300px; margin: 0 auto;margin-bottom: 30px;">
+                        <img id="meme-img" src=""/>
+                    </div>
+                    <div class="row">
+                                <div id="spinner"class="spinner-grow text-dark" role="status" style="margin: 0 auto; display: none;">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                    </div>
+                        <div class="btn-group btn-group-lg" style="width: 100%; margin-bottom: 30px">
+                            <button id="add-them" type="button" class="add-chat-btn btn btn-outline-primary btn-lg">Add message from them</button>
+                            <button id="add-you" type="button" class="add-chat-btn btn btn-outline-primary btn-lg">Add message from you</button>
                         </div>
-                        <div class="row input-rows">
-                            <div class="col-sm-6 input-group chat-area">
-                                <span class="input-group-text" id="them-2">Them</span>
-                                <input id="them-reply-2" type="text" class="form-control" placeholder="They replied" aria-label="Reply" aria-describedby="them-2">
-                            </div>
-                            <div class="col-sm-6">
-                            </div>
-                            <div class="col-sm-6">
-                            </div>
-                            <div class="col-sm-6 input-group chat-area">
-                                <input id="you-reply-2" type="text" class="form-control" placeholder="You replied" aria-label="Your Reply" aria-describedby="you-2">
-                                <span class="input-group-text" id="you-2">You</span>
-                            </div>
-                        </div>
-                        <div class="row input-rows">
-                            <div class="col-sm-6 input-group chat-area">
-                                <span class="input-group-text" id="them-2">Them</span>
-                                <input id="them-reply-3" type="text" class="form-control" placeholder="They replied" aria-label="Reply" aria-describedby="them-2">
-                            </div>
-                            <div class="col-sm-6">
-                            </div>
-                            <div class="col-sm-6">
-                            </div>
-                            <div class="col-sm-6 input-group chat-area">
-                                <input id="you-reply-3" type="text" class="form-control" placeholder="You replied" aria-label="Your Reply" aria-describedby="you-3">
-                                <span class="input-group-text" id="you-3">You</span>
-                            </div>
-                        </div>
-                        <div class="d-grid gap-2 col-2 mx-auto">
+                        <script>
+                            document.getElementById("add-them").addEventListener("click", function() {
+                                var n_them = document.getElementsByClassName('them-row').length;
+                                var newElement = document.createElement('div');
+                                newElement.innerHTML = `<div class="row input-rows them-row">
+                                                <div class="col-sm-12 input-group chat-area">
+                                                    <span class="input-group-text" id="them-${n_them}">Them</span>
+                                                    <input id="them-reply-${n_them}" type="text" class="form-control" placeholder="They replied" aria-label="Reply" aria-describedby="them-${n_them}">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                </div>
+                                            </div>`;
+                                document.getElementById('chats').appendChild(newElement);
+                            })
+                            document.getElementById("add-you").addEventListener("click", function() {
+                                var n_you = document.getElementsByClassName('you-row').length;
+                                var newElement = document.createElement('div');
+                                
+                                newElement.innerHTML = `<div class="row input-rows you-row">
+                                                <div class="col-sm-6">
+                                                </div>
+                                                <div class="col-sm-6 input-group chat-area">
+                                                    <input id="you-reply-${n_you}" type="text" class="form-control" placeholder="You replied" aria-label="Your Reply" aria-describedby="you-${n_you}">
+                                                    <span class="input-group-text" id="you-${n_you}">You</span>
+                                                </div>
+                                            </div>`;
+                                document.getElementById('chats').appendChild(newElement);
+                            })
+                        </script>
+                        <div id="chats"></div>
+                        <div class="submit-div d-grid gap-2 col-2 mx-auto">
                             <button id="submit-btn" class="btn btn-primary" type="button">Test compatibility</button>
                         </div>
                         <script>
                             document.getElementById('submit-btn').addEventListener("click", function(e) {
-                                $('#loaded-bar').hide();
-                                $('#loading-bar').show();
+                                $('#spinner').show();
                                 
-                                var chats = [
-                                    $('#them-reply-1').val(),
-                                    $('#them-reply-2').val(),
-                                    $('#them-reply-3').val(),
-                                    $('#you-reply-1').val(),
-                                    $('#you-reply-2').val(),
-                                    $('#you-reply-3').val(),
-                                ];
-                                console.log(chats);
+                                var chats = [];
+                                var n_them = document.getElementsByClassName('them-row').length;
+                                var n_you = document.getElementsByClassName('you-row').length;
+                                for (var i = 0; i < n_them; i++) {
+                                    chats.push($(`#them-reply-${i}`).val());
+                                }
+                                for (var i = 0; i < n_you; i++) {
+                                    chats.push($(`#you-reply-${i}`).val());
+                                }
+
+                                function generateGif() {
+                                    function searchGiphy(searchQuery) {
+                                    var url =
+                                    "https://api.giphy.com/v1/gifs/search?api_key=Yrmn1YFaIbwuVBaE5T9dlGtdaPqlMOyE&limit=1&offset=0&rating=g&lang=en&q="
+                                    + searchQuery;
+                                        
+                                    // AJAX Request
+                                        
+                                    var GiphyAJAXCall = new XMLHttpRequest();
+                                    GiphyAJAXCall.open("GET", url);
+                                    GiphyAJAXCall.send();
+
+                                    GiphyAJAXCall.addEventListener("load", function (data) {
+                                        var actualData = JSON.parse(data.target.response);
+                                        var imgUrl = actualData.data[0].images.original.url;
+                                        document.getElementById('meme-img').src = imgUrl;
+                                    });
+                                    }
+                                    var percentage = document.getElementById('percentage-value').innerHTML || document.getElementById('percentage-value-mobile').innerHTML;;
+                                    percentage = parseInt(percentage.substring(0, percentage.length - 1));
+                                    if (percentage <= 20) {
+                                        searchGiphy(`better+luck+next+time`);
+                                    }  else if (percentage <= 40) {
+                                        searchGiphy(`give+it+a+shot`);
+                                    } else if (percentage <= 60) {
+                                        searchGiphy(`things+are+interesting`);
+                                    } else if (percentage <= 80) {
+                                        searchGiphy(`coffee+or+drinks`);
+                                    } else {
+                                        searchGiphy(`match+made+in+heaven`);
+                                    }
+                                    
+
+                                }
+
                                 $.post(
                                     "/hello", { 'data': JSON.stringify(chats) }, 
                                     function(data = {}){
-                                        $('#loading-bar').hide();
-                                        $('#loaded-bar').show();
+                                        setTimeout(function() {$('#spinner').hide()} , 500);
                                         var percentage =data.percentage || 0;
-                                        document.getElementById('loaded-bar').innerHTML = `<div class="progress-bar" role="progressbar" style="width: ${percentage}%;" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100"></div>`
                                         document.getElementById('percentage-value').innerHTML = `${percentage}%`;
-                                        console.log(data);
+                                        document.getElementById('percentage-value-mobile').innerHTML = `${percentage}%`;
+                                        generateGif();
                                 }).fail(function(){
                                     console.log("error");
                                 });
