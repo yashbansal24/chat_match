@@ -35,9 +35,7 @@
             <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Pickup line</button>
             </li>
-            <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">API</button>
-            </li>
+            <a href="/generate" class="nav-link">API</a>
         </ul>
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
@@ -169,7 +167,7 @@
                                 }
 
                                 $.post(
-                                    "/hello", { 'data': JSON.stringify(chats) }, 
+                                    "/match", { 'data': JSON.stringify(chats) }, 
                                     function(data = {}){
                                         setTimeout(function() {$('#spinner').hide()} , 500);
                                         var percentage =data.percentage || 0;
@@ -187,7 +185,7 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">Generate Pickup line. Coming soon...</div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">Please contact our administrators to know more about it</div>
+            <!-- <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">Please contact our administrators to know more about it</div> -->
         </div>
     </div>
     

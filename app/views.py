@@ -14,9 +14,9 @@ def home():
         "home.html"
     )
 
-@app.route("/hello", methods=["POST"])
+@app.route("/match", methods=["POST"])
 @cross_origin()
-def hello_there(name = None):
+def match():
     chats = json.loads(request.form.get('data'))
     chats = list(map(lambda chat: chat.strip(), chats))
     chats = list(filter(lambda chat: len(chat) > 0, chats))
@@ -31,3 +31,19 @@ def hello_there(name = None):
         percentage = min( percentage + flirtBonus , 1)
         percentage*=100.0
     return jsonify({ "percentage" : math.floor(percentage) })
+
+def match_percentage(convos):
+    chats = json.loads(convos)
+    chats = list(map(lambda chat: chat.strip(), chats))
+    chats = list(filter(lambda chat: len(chat) > 0, chats))
+    percentage = 0
+    if chats:
+        resp = simpleSentimentAnalysis(chats)
+        for result in resp:
+            percentage += result.polarity * min(1 , .5 + result.subjectivity ) # threshold for subjectivity is .5
+        percentage/=len(resp)
+        flirtBonus = predictFlirtationBonus(chats)
+
+        percentage = min( percentage + flirtBonus , 1)
+        percentage*=100.0
+    return math.floor(percentage)
