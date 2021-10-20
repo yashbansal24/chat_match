@@ -52,6 +52,12 @@
             });
         </pre>
         </code>
+        <p>Response:</p>
+        <code>
+            <pre id="response">
+
+            </pre>
+        </code>
         </div>
         
         <script>
@@ -73,7 +79,7 @@
                         'token': document.getElementById('api-key').value
                     },
                     function(data = {}){
-                        console.log(data);
+                        document.getElementById('response').innerHTML = JSON.stringify(data, null, "\t");
                 }).fail(function(){
                     console.log("error");
                 });
